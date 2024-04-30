@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Products</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f8f9fa;
+	background-image: url('image1.png');
+	/* Replace 'your-background-image.jpg' with your actual image path */
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	background-attachment: fixed;
+}
+
+.navbar {
+	background-color: #343a40;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+	color: #fff;
+}
+
+.form-container {
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	max-width: 400px;
+	margin: auto;
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.form-group label {
+	font-weight: bold;
+}
+
+.form-group input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+}
+
+/* button {
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+} */
+
+button:hover {
+	background-color: #0056b3;
+}
+
+.error-message {
+	color: red;
+}
+</style>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href="#">Ecart Application</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+
+				<form class="form-inline ml-auto" th:action="@{/search}"
+					method="get">
+
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Search" aria-label="Search" name="keyword">
+
+					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+
+				</form>
+
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/products}">Products</a></li>
+					<!-- <li class="nav-item"><a class="nav-link"
+						th:href="@{/new/product}">Add Product</a></li> -->
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/customers}">Customers</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/feedbacks}">Feedbacks </a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="form-container">
+		<h2>Add Product</h2>
+		<form action="#" th:action="@{/product}" th:object="${product}" method="post">
+			<div>
+				<label for="productName">Product Name:</label> <input type="text"
+					id="productName" th:field="*{productName}" class="form-control" /> <small
+					th:if="${#fields.hasErrors('productName')}" class="text-danger"
+					th:errors="*{productName}"></small>
+			</div>
+			<div>
+				<label for="category">Category:</label> <input type="text"
+					id="category" th:field="*{category}" class="form-control" /> <small
+					th:if="${#fields.hasErrors('category')}" class="text-danger"
+					th:errors="*{category}"></small>
+			</div>
+			<div>
+				<label for="category">Quantity:</label> <input type="text"
+					id="quantity" th:field="*{quantity}" class="form-control" /> <small
+					th:if="${#fields.hasErrors('quantity')}" class="text-danger"
+					th:errors="*{quantity}"></small>
+			</div>
+			<div>
+				<label for="price">Price:</label> <input type="text"
+					id="price" th:field="*{price}" class="form-control" /> <small
+					th:if="${#fields.hasErrors('price')}" class="text-danger"
+					th:errors="*{price}"></small>
+			</div>
+			<button type="submit" class="btn btn-primary">Add Product</button>
+		</form>
+	</div>
+</body>
+</html>
+

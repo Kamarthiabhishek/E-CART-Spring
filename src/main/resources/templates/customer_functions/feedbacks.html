@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cart</h2>
+    <div class="row">
+        <div th:each="feedbacks : ${feedbacks}" class="col-md-4">
+            <div class="product-box">
+            <input type="text" th:value="${customerId}"/>
+                <div class="id" th:text="${feedbacks.feedback_id}"></div>
+                <div class="feedback" th:text="${feedbacks.feedback}"></div>
+                <div class="customerId" th:text="${feedbacks.customer_id}"></div>
+                <!-- <div class="item-buttons">
+                    <a class="btn btn-danger btn-remove"
+                       th:href="@{/cart/delete/{cart_id}(cart_id=${item.cart_id}, customerId=${customerId})}">Remove</a>
+                    <a class="btn btn-primary btn-buy"
+                       th:href="@{/buy/{cart_id}(cart_id=${item.cart_id}, customerId=${customerId})}">Buy</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

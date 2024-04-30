@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Filter Products by Price Range</h2>
+    <form action="/products/filter" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="minPrice">Minimum Price:</label>
+                <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="Enter minimum price" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="maxPrice">Maximum Price:</label>
+                <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="Enter maximum price" required>
+            </div>
+            <div class="form-group col-md-4">
+                <button type="submit" class="btn btn-primary">Apply Filter</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Table to display filtered products -->
+    <table id="filteredProducts" class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Table rows will be dynamically added here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Function to dynamically populate table with filtered products
+    function populateTable(products) {
+        var tableBody = document.getElementById('filteredProducts').getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = ''; // Clear previous content
+
+        products.forEach(function(product) {
+            var row = tableBody.insertRow();
+            row.insertCell(0).innerHTML = product.product_id;
+            row.insertCell(1).innerHTML = product.product_name;
+            row.insertCell(2).innerHTML = product.category;
+            row.insertCell(3).innerHTML = product.quantity;
+            row.insertCell(4).innerHTML = product.price;
+        });
+    }
+</script>
+
+</body>
+</html>

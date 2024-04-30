@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add to Cart</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	margin: 0;
+	padding: 20px;
+}
+
+h2 {
+	text-align: center;
+}
+
+form {
+	margin: 20px auto;
+	max-width: 400px;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+input[type="number"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+.button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #45a049;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.button:hover {
+	background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+
+	<h2>Add to Cart</h2>
+
+	
+
+	<form th:action="@{/add-to-cart}" method="post">
+	<div class="product-details">
+		<h2 th:text="${product.productName}"></h2>
+		<p><strong>Category:</strong> <span th:text="${product.category}">Category</span></p>
+        <p><strong>Price:</strong> <span th:text="${product.price}"></span></p>
+	</div>
+		<input type="hidden" name="customerId" th:value="${customerId}">
+		<input type="hidden" name="productId" th:value="${product.product_id}">
+		<p>
+							<strong>Available Quantity:</strong> <span th:text="${product.quantity}"></span>
+						</p>
+		
+			
+		<label for="quantity">Quantity:</label> <input type="number"
+			id="quantity" name="quantity" min="1" required> <input
+			type="hidden" name="price" th:value="${product.price}"> <input
+			type="submit" value="Add to Cart" class="button">
+			
+			<div th:if="${qtyError}" style="color: red;" role="alert">
+    <p th:text="${qtyError}"></p></div>
+	</form>
+
+</body>
+</html>

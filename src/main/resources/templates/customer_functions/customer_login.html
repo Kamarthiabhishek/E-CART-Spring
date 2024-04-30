@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f8f9fa;
+	background-image: url('image1.png');
+	/* Replace 'your-background-image.jpg' with your actual image path */
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	background-attachment: fixed;
+}
+
+.container {
+	display: flex;
+	justify-content: flex-end; /* Aligns the container to the left */
+	align-items: center;
+	height: 100vh;
+	padding-right: 50%; /* Add some left padding for better alignment */
+}
+
+.container2 {
+	display: flex;
+	justify-content: flex-start;;
+	align-content: center;
+	height: 100vh;
+	width: 50%;
+	padding-right: 50%;
+}
+
+.login-box {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin: 10px;
+	margin-right: 220px;
+}
+
+.login-box h2 {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.input-group {
+	margin-bottom: 15px;
+}
+
+.input-group label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.input-group input {
+	width: calc(100% - 20px);
+	/* Adjust width to fit container with padding */
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-right: 20px; /* Add right margin to separate input fields */
+}
+
+button {
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+.registration-link {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.error-message {
+	color: red;
+}
+
+.left-content {
+	margin-left: 20px;
+	color: #fff;
+}
+.registration-link {
+	text-align: center;
+	margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="login-box">
+			<h2>Customer Login</h2>
+			<form th:action="@{/customer/login}" th:object="${customer}" method="post">
+				<div class="input-group">
+					<label for="customer-username">Username</label> <input type="text"
+						id="customer-username" name="customer-username" th:field="*{email}" required >
+				</div>
+				<div class="input-group">
+					<label for="customer-password">Password</label> <input type="password"
+						id="customer-password" name="customer-password" th:field="*{password}" required>
+				</div>
+				<button type="submit">Login</button>
+				<div th:if="${error}" role="alert" style="color:red">
+					<p th:text="${error}"></p>
+				</div>
+			</form>
+			<div class="registration-link">
+				<p>
+					If you're a new customer, <a th:href="@{/new/customer}">register
+						here</a>.
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

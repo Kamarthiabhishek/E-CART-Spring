@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Product</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    .form-group input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .form-group input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Add Product</h2>
+    <form th:action="@{/customer/update}" th:object="${customer}" id="add-customer-form" method="post">
+    <input type="hidden" id="customer_id" th:field="*{customer_id}" /><br/>
+        <div class="form-group">
+            <label for="first-name">Product Name:</label>
+            <input type="text" id="first-name" th:field="*{first_name}"/>
+        </div>
+        <div class="form-group">
+            <label for="last-name">Product Name:</label>
+            <input type="text" id="last-name" th:field="*{last_name}"/>
+        </div>
+        <div class="form-group">
+        	<label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" th:field="*{dob}" />
+        </div>
+        <div class="form-group">
+            <label for="gender">Category:</label>
+            <input type="text" id="gender" th:field="*{gender}" /><br/>
+        </div>
+        <div class="form-group">
+            <label for="email">Quantity:</label>
+            <input type="email" id="email" th:field="*{email}" /><br/>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Update">
+        </div>
+    </form>
+</div>
+</body>
+</html>

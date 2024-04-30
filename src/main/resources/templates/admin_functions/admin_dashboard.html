@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ecart</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f8f9fa;
+	background-image: url('login.jpg');
+	/* Replace 'your-background-image.jpg' with your actual image path */
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	background-attachment: fixed;
+}
+
+h2 {
+	color: #FF7F50;
+}
+
+.product-box {
+	border: 1px solid #dee2e6;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	padding: 15px;
+	background-color: rgba(255,255,255,0.134);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	transition: all 0.3 ease;
+	z-index: 2;
+}
+
+.container {
+	position: relative;
+	z-index: 1;
+}
+
+.product-box:hover {
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	transform: scale(1.05);
+}
+
+.product-name {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.product-price {
+	font-size: 18px;
+	color: #007bff;
+	margin-top: 10px;
+}
+
+.navbar {
+	background-color: #343a40;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+	color: #fff;
+}
+
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href="#">Ecart Application</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+
+				<form class="form-inline ml-auto" th:action="@{/search}"
+					method="get">
+
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Search" aria-label="Search" name="keyword">
+
+					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+
+				</form>
+
+				<ul class="navbar-nav ml-auto">
+					<!-- <li class="nav-item"><a class="nav-link"
+						th:href="@{/products}">Products</a></li> -->
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/new/product}">Add Product</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/customers}">Customers</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/feedbacks}">Feedbacks </a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h2>Products</h2>
+		<div class="row">
+			<div th:each="products : ${prod}" class="col-md-8">
+				<div class="product-box">
+					<div class="product-name" th:text="${products.productName}"></div>
+					<div class="product-category" th:text="${products.category}"></div>
+					<div class="product-quantity"
+						th:text="'Quantity: ' + ${products.quantity}"></div>
+					<div class="product-price" th:text="'Price: ' + ${products.price}"></div>
+
+					<a class="btn btn-primary"
+						th:href="@{/product/{product_id}(product_id=${products.product_id})}">Edit</a>
+					</td> <a class="btn btn-danger"
+						th:href="@{/product/delete/{product_id}(product_id=${products.product_id})}">Delete</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="customersContent">
+		<!-- This area will be replaced with the content from customers.html -->
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+		integrity="sha384-I5gndXJ5Sq+W2m/mE9lGqw5wpbqWzvwPtkTPCN6sX/Igs7MyBQ3Hy/kKEOw1mpnj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tK0DXTtiObeQ6"
+		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,5 @@
+1. create a database in mysql named demo before running the application(need not create any tables, they will be created automatically)
+
+2. Comment the cart and orders Class and run 
+
+3. later uncomment them and run

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ecart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding-top: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+      .navbar {
+	background-color: #343a40;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+	color: #fff;
+}
+
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .dropdown-menu {
+            background-color: #007bff;
+        }
+
+        .dropdown-item {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href="#">Ecart Application</a>
+			<form class="form-inline ml-auto">
+				<input class="form-control mr-sm-2" type="hidden" name="customerId"
+					th:value="${customerId}" placeholder="Customer ID">
+			</form>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<form class="form-inline ml-auto" th:action="@{/search}"
+					method="get">
+
+					<input class="form-control mr-sm-2" type="search"
+						placeholder="Search" aria-label="Search" name="keyword">
+
+					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+
+				</form>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+                    <a class="nav-link" th:href="@{/dashboard (id=${customerId})}">Products</a>
+                </li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/cart(customerId=${customerId})}">Cart</a></li>
+					<!-- <li class="nav-item"><a class="nav-link"
+						th:href="@{/customer/login}">Profile </a></li> -->
+					<!-- <li class="nav-item"><a class="nav-link"
+						th:href="@{/customerorders(customerId=${customerId})}">Orders
+					</a></li> -->
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/addfeedback(customerId=${customerId})}">Add
+							Feedback </a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+<div class="container">
+    <h2>My Orders</h2>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>Order ID</th>
+            <th>Bill amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orders : ${orders}">
+            <td th:text="${orders.order_id}"></td>
+      
+            <td th:text="${orders.bill_amount}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <a th:href="@{/dashboard(id=${customer_id})}">Back</a> -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+        integrity="sha384-I5gndXJ5Sq+W2m/mE9lGqw5wpbqWzvwPtkTPCN6sX/Igs7MyBQ3Hy/kKEOw1mpnj"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tK0DXTtiObeQ6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
